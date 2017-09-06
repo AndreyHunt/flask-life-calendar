@@ -4,8 +4,7 @@ from app import app
 from app.views import *
 from datetime import datetime
 
-
-#http://tech.waynesimmerson.ca/Article/learn-test-driven-development-flask-part-2
+# http://tech.waynesimmerson.ca/Article/learn-test-driven-development-flask-part-2
 class ViewsTestCase(unittest.TestCase):
 
     def setUp(self):
