@@ -1,0 +1,27 @@
+#On windows ren gitignore.txt .gitignore
+
+
+### virtualenv folder
+/pyvenv36
+/__pycache__
+
+
+### Compiled sources 
+
+*.exe
+*.pyc
+
+
+### Logs and databases 
+
+*.log
+*.sql
+*.sqlite
+
+
+### OS generated files 
+
+._*
+ehthumbs.db
+Thumbs.db
+*~

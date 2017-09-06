@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="description">
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            <p>I was borned</p>
+            <p>
+                {{ form.birth_day(class='birth-day-input', type="number", placeholder="DD", min="1", max="31", required=1) }}
+                {{ form.birth_month(class='birth-month-input', type="number", placeholder="MM", min="1", max="12", required=1) }}
+                {{ form.birth_year(class='birth-year-input', type="number", placeholder="YYYY", required=1) }}
+            </p>
+            {% if form.birth_day.errors or form.birth_month.errors or form.birth_year.errors %}
+                <div class="alert alert-error">
+                    {%for field in [form.birth_day, form.birth_month, form.birth_year] %}
+                        {% for error in field.errors %}
+                            <div class="error-line">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <p>and expect to live {{ form.expected_age(class='age-input', type="number", placeholder="90", min="1", max="100") }} years</p> 
+            {% if form.expected_age.errors %}
+                <div class="alert alert-error">
+                    {% for error in form.expected_age.errors %}
+                        <div class="error-line">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <p><input class="go-button red-m strong-m uppercase-m" type="submit" value="Show me"></p>
+        </form>
+    </div>
+    <div class="months-of-life-calendar">
+            <div class="years-container">
+                {% for years, _ in calendar %}
+                    {% if years %}
+                        <span class="calendar-line-years">{{ years }}</span>
+                    {% else %}
+                        <span class="calendar-line-years"></span>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="items-container">
+                {% for _, row in calendar %}
+                    <div class="items-line">
+                    {% for el in row %}
+                        {% if el.is_past %}
+                            <div class="calendar-line-item past" start-date="{{el.start_date}}" end-date="{{el.end_date}}">
+                            </div>
+                        {% else %}
+                            <div class="calendar-line-item" start-date="{{el.start_date}}" end-date="{{el.end_date}}">
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+            
+   
