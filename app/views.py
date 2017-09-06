@@ -11,7 +11,9 @@ def calendar():
     form = BirthDateAgeForm()
     if form.validate_on_submit():
         exp_age = int(form.expected_age.data) if form.expected_age.data else 90
-        year, month, day = int(form.birth_year.data), int(form.birth_month.data), int(form.birth_day.data)
+        year, month, day = int(form.birth_year.data),  \
+                           int(form.birth_month.data), \
+                           int(form.birth_day.data)
         birth_date = datetime(year, month, day)
         life_months = get_months_of_life_list(exp_age, birth_date)
         months_of_life_calendar = get_months_of_life_calendar(life_months, 3) 
